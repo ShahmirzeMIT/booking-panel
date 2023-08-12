@@ -1,5 +1,6 @@
 const main=document.querySelector(".main")
 const servis=document.querySelector(".servis")
+let all = document.getElementsByClassName("all");
 const staff = [
 	{
 	    "id": 1,
@@ -100,15 +101,36 @@ function currentSlide(n) {
 function showSlides(n) {
   let i;
   let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
   if (n > slides.length) {slideIndex = slides.length}    
 //   if (n < 1) {slideIndex = 1}
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";  
   }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
+ 
   slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
+}
+
+
+let dateindex = 1;
+changeDate(dateindex);
+
+function add(number) {
+  changeDate(dateindex += number);
+}
+
+function forNow(number) {
+  changeDate(dateindex = number);
+}
+
+function changeDate(number) {
+  let i;
+
+
+  if (number > all.length) {
+    dateindex = all.length;
+  }
+  for (i = 0; i < all.length; i++) {
+    all[i].style.display = "none";
+  }
+  all[dateindex - 1].style.display = "block";
 }
