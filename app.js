@@ -1,6 +1,8 @@
 const main=document.querySelector(".main")
 const servis=document.querySelector(".servis")
-let all = document.getElementsByClassName("all");
+const all = document.getElementsByClassName("all");
+let takeTime=document.querySelector('.takeTime')
+
 const staff = [
 	{
 	    "id": 1,
@@ -31,6 +33,21 @@ const staff = [
 	    "price": 120.00,
 	}
   ]; 
+  const date = ["2022-03-04", "2022-03-05", "2022-03-06"];
+  const time = [
+	{   "id":"timeId1",
+	    "start_time": "09:00",
+	    "end_time": "09:30"
+	},
+	{"id":"timeId2",
+	    "start_time": "09:30",
+	    "end_time": "10:00"
+	},{"id":"timeId3",
+		"start_time": "10:00",
+		"end_time": "10:30"
+	}
+  ];
+ 
  
 
   let xStaff="";
@@ -72,21 +89,6 @@ const staff = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 let slideIndex = 1;
 showSlides(slideIndex);
 
@@ -102,7 +104,7 @@ function showSlides(n) {
   let i;
   let slides = document.getElementsByClassName("mySlides");
   if (n > slides.length) {slideIndex = slides.length}    
-//   if (n < 1) {slideIndex = 1}
+  
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";  
   }
@@ -129,8 +131,87 @@ function changeDate(number) {
   if (number > all.length) {
     dateindex = all.length;
   }
+  if (number < all.length) {
+	dateindex = 1;
+   }
   for (i = 0; i < all.length; i++) {
     all[i].style.display = "none";
   }
   all[dateindex - 1].style.display = "block";
 }
+
+let previousTd = null;
+let isTimeAppended = false;
+
+function getData(n) {
+    let currentTd = document.getElementById(`${n}`);
+
+    if (previousTd) {
+        previousTd.style.background = "";
+    }
+
+    currentTd.style.background = "#6C70DC";
+
+    previousTd = currentTd;
+    const select = document.querySelector('.takeTime > h5');
+    select.style.display = "none";
+
+    if (!isTimeAppended) {
+        const h5 = document.createElement('h5');
+        const times = document.createElement('div');
+        times.classList.add('times');
+        h5.textContent = date[0];
+        takeTime.append(h5);
+
+        for (let i = 0; i < time.length; i++) {
+
+            const oclock = document.createElement('div');
+            oclock.classList.add('oclock');
+            oclock.id = time[i].id;
+            const pStart = document.createElement("p");
+            const pEnd = document.createElement("p");
+            pStart.textContent = time[i].start_time;
+            pEnd.textContent = time[i].end_time;
+            oclock.append(pStart, ' ', pEnd);
+            times.append(oclock);
+        }
+        takeTime.append(times);
+        isTimeAppended = true;
+
+        // Attach event listeners to oclock elements
+        const oclockElements = document.querySelectorAll('.oclock');
+        oclockElements.forEach(oclock => {
+            oclock.addEventListener('click', () => {
+                const clickedData = oclock.id;
+                getTime(clickedData);
+            });
+        });
+    }
+}
+
+let former = null;
+
+function getTime(data) {
+    console.log(data);
+
+    let oclockElement = document.getElementById(data);
+    if (oclockElement) {
+        console.log(oclockElement.textContent);
+        if (former) {
+            former.style.background = "";
+        }
+        oclockElement.style.background = "green";
+        former = oclockElement;
+    }
+}
+
+
+
+
+ const tds = document.querySelectorAll(".tds");
+ tds.forEach((td, index) => {
+	td.addEventListener("click", () => {
+	    getData(index + 1); 
+	});
+ });
+ 

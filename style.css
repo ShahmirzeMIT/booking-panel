@@ -185,12 +185,10 @@ line-height: normal;
 .date{
 	position: relative;
 	z-index: 0;
-	width: 60%;
+	width: 55%;
 	text-align: center;
 }
-.time{
-	width: 40%;
-}
+
 .rightSpan{
 	position: absolute;
     top: -1.5%;
@@ -204,15 +202,20 @@ line-height: normal;
 	right: 30%;
 }
 .datatable{
-	width: 80%;
+	width: 95%;
 	margin: 0 auto;
 	padding: 10px 5px;
+	height: 38vh;
+
 	background-color: white;
 }
 .tds{
 	width: 45px;
 	background-color: #e2e4e5;
 color: #AAACAF;
+}
+.month{
+	margin-bottom: 15px;
 }
 .all{
 	display: none;
@@ -228,10 +231,44 @@ color: #AAACAF;
 	line-height: normal;
 	letter-spacing: 0.2px;
 }
+.time{
+	width: 45%;
+	text-align: center;
+}
+.timehead{
+	width: 88%;
 
-
-
-
+}
+.timehead > h5{
+	margin-bottom: 15px;
+	
+}
+.takeTime{
+	width: 100%;
+	height: 38vh;
+	border-radius: 2px;
+	background: #FFF;
+}
+.takeTime> h5{
+	padding-top:8px ;
+	border-bottom: 0.1px solid #f5f2f2;
+	color: #6C70DC;
+}
+.line{
+	border: 1px solid  #d5d8db;
+	width: 95%;
+	margin: 0 auto;
+}
+.times{
+	display: flex;
+	margin-top: 20px;
+	justify-content: space-between;
+}
+.oclock{
+	padding: 3px 18px;
+	background: #ECEFF2;
+	margin: 0 5px;
+}
 /* .next {
   right: 0;
   border-radius: 3px 0 0 3px;
