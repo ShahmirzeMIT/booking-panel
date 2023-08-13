@@ -366,11 +366,13 @@ function getTime(data) {
     if (oclockElement) {
         if (former) {
             former.style.background = "";
+		  former.style.color="black"
         }
-        oclockElement.style.background = "#53D56C";
+	   oclockElement.style.background = "#53D56C";
         oclockElement.style.color = "white";
         former = oclockElement;
     }
+   
     gotTime.textContent=former.textContent
 }
 
@@ -425,7 +427,7 @@ confirm.addEventListener('click',()=>{
 			lastname.value=null
 			email.value=null
 			phone.value=null
-		},1000);
+		},300);
 		
 		
 	}
