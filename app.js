@@ -27,7 +27,8 @@ const myStaff=document.getElementById("myStaff")
 const myServices=document.getElementById("myServices") 
 const myDateTime=document.getElementById("myDateTime")
 const myConfirm=document.getElementById("myConfirm")
-
+const rightSpan = document.querySelector('.rightSpan');
+const leftSpan = document.querySelector('.leftSpan');
 
 const staff = [
     {
@@ -283,31 +284,6 @@ function showSlides(n) {
 
 
 
-let dateindex = 1;
-changeDate(dateindex);
-
-function add(number) {
-    changeDate(dateindex += number);
-}
-
-function forNow(number) {
-    changeDate(dateindex = number);
-}
-
-function changeDate(number) {
-    let i;
-
-    if (number > all.length) {
-        dateindex = all.length;
-    }
-    if (number < all.length) {
-        dateindex = 1;
-    }
-    for (i = 0; i < all.length; i++) {
-        all[i].style.display = "none";
-    }
-    all[dateindex - 1].style.display = "block";
-}
 
 let previousTd ;
 let isTimeAppended = false;
@@ -391,7 +367,8 @@ function getTime(data) {
         if (former) {
             former.style.background = "";
         }
-        oclockElement.style.background = "green";
+        oclockElement.style.background = "#53D56C";
+        oclockElement.style.color = "white";
         former = oclockElement;
     }
     gotTime.textContent=former.textContent
@@ -464,4 +441,90 @@ close.addEventListener('click',()=>{
 	modal.style.display="none";
 })
 
+let dateindex = 1;
+changeDate(dateindex);
 
+function add(number) {
+    changeDate(dateindex += number);
+}
+
+function forNow(number) {
+    changeDate(dateindex = number);
+}
+
+function changeDate(number) {
+    let i;
+
+    if (number > all.length) {
+        dateindex = all.length;
+    }
+    if (number < all.length) {
+        dateindex = 1;
+    }
+    for (i = 0; i < all.length; i++) {
+        all[i].style.display = "none";
+    }
+    all[dateindex - 1].style.display = "block";
+}
+
+let currentYear = 2023;
+let currentMonth = 7;
+
+function generateCalendar(year, month) {
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDay = new Date(year, month, 1).getDay();
+
+    const calendarTable = document.getElementById('calendarTable');
+    const calendarMonth = document.getElementById('calendarMonth');
+
+    calendarTable.innerHTML = '';
+
+    let date = 1;
+
+    for (let i = 0; i < 6; i++) {
+        const row = document.createElement('tr');
+
+        for (let j = 0; j < 7; j++) {
+            if ((i === 0 && j < firstDay) || date > daysInMonth) {
+                row.innerHTML += '<td></td>';
+            } else {
+                row.innerHTML += `<td class="tds" id="${date}" onclick="getData(${date})">${date}</td>`;
+                date++;
+            }
+        }
+
+        calendarTable.appendChild(row);
+    }
+
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    calendarMonth.textContent = `${monthNames[month]} ${year}`;
+}
+
+function changeMonth(step) {
+    currentMonth += step;
+
+    if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+    } else if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+    }
+
+    generateCalendar(currentYear, currentMonth);
+    getUpdateDateTime(); // Clear selected date and time when changing month
+}
+
+generateCalendar(currentYear, currentMonth);
+
+
+
+rightSpan.addEventListener('click', () => {
+    changeMonth(-1);
+    generateCalendar(currentYear, currentMonth);
+});
+
+leftSpan.addEventListener('click', () => {
+    changeMonth(1);
+    generateCalendar(currentYear, currentMonth);
+});
