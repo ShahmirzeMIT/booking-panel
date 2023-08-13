@@ -169,7 +169,7 @@ function plusSlides(n) {
 	    }
 	}
 	
-	// Prevent navigation to slide 4 if getTime and getData are not used
+	
 	if (slideIndex === 3 && (!former || !previousTd)) {
 	    alert3.style.display = "block";
 	    return;
@@ -246,10 +246,31 @@ function getData(n) {
     if (!isTimeAppended) {
 	
         const h5 = document.createElement('h5');
+
         const times = document.createElement('div');
         times.classList.add('times');
-        h5.textContent = date[0];
-        takeTime.append(h5);
+	   for (let i = 0; i < date.length; i++) {
+		let divDate=document.createElement("div")
+		divDate.classList.add("mydates")
+		divDate.textContent=date[i]
+		h5.appendChild(divDate)
+		
+	   }
+	   let currentIndex = 1;
+	   
+	   h5.children[currentIndex].style.display = "block";
+	   
+	   h5.addEventListener('click', () => {
+		  h5.children[currentIndex].style.display = "none"; 
+	   
+		  currentIndex = (currentIndex + 1) % h5.children.length;
+	   
+		  h5.children[currentIndex].style.display = "block"; 
+	   });
+	   
+	   takeTime.append(h5);
+       
+
 	
         for (let i = 0; i < time.length; i++) {
 
