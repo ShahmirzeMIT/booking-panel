@@ -23,8 +23,6 @@ const close=document.querySelector(".close")
 const modal=document.querySelector(".modal")
 const verify=document.querySelector(".verify")
 const fail=document.querySelector(".fail")
-const staffID=document.getElementById("staffID")
-const servicesID=document.getElementById("servicesID") 
 const myStaff=document.getElementById("myStaff")
 const myServices=document.getElementById("myServices") 
 const myDateTime=document.getElementById("myDateTime")
@@ -100,8 +98,6 @@ function chooseStaff(i) {
     xId = staffId.slice(-1);
     gotName.textContent = staffName;
     staffPrev = elem;
-
-    staffID.innerText = xId;;
    
 }
 
@@ -134,27 +130,28 @@ servis.innerHTML = xServices;
 let servicesPrev=null
 let serveName=""
 let servePrice=""
-let yId;
 
 function chooseServices(servisId) {
-    const myservices = document.getElementById("services" + servisId);
-    if (servicesPrev) {
-        servicesPrev.style.border = "";
-    }
+	const myservices = document.getElementById("services" + servisId);
+	if (servicesPrev) {
+	    servicesPrev.style.border = "";
+	}
+ 
+	myservices.style.border = "2px solid green";
+	let servicesName = myservices.querySelector('.servisXName').textContent;
+	let servicesprice = myservices.querySelector('.price').textContent;
+	let servicesId = "services" + servisId; 
+	
+	yId = servicesId.slice(-1); 
+	console.log(yId)
+	isServicesSelected = true;
+	servicesPrev = myservices;
+	gotServe.textContent = servicesName;
+	gotPrice.textContent = servicesprice;
 
-    myservices.style.border = "2px solid green";
-    let servicesName = myservices.querySelector('.servisXName').textContent;
-    let servicesprice = myservices.querySelector('.price').textContent;
-    let servicesId = myservices.querySelector('.servisXName').id;
-    yId = servicesId.slice(-1);
-
-    isServicesSelected = true;
-    servicesPrev = myservices;
-    gotServe.textContent = servicesName;
-    gotPrice.textContent = servicesprice;
-
-    servicesID.innerText = yId;
 }
+
+ 
 
 
 function getServicesUpdate(){
@@ -440,8 +437,8 @@ confirm.addEventListener('click',()=>{
 				phone:phone.value
 			},
 			date:gotDate.textContent,
-			services_id:servicesID.innerText,
-			staff_id:staffID.innerText,
+			services_id:yId,
+			staff_id:xId,
 			time:gotTime.textContent
 		}
 		console.log(datasendJSon)
