@@ -3,10 +3,17 @@ const servis = document.querySelector(".servis");
 const all = document.getElementsByClassName("all");
 let takeTime = document.querySelector('.takeTime');
 const alert=document.querySelector('.alert')
-
+const show=document.getElementById("show")
 const alert1=document.getElementById('alert1')
 const alert2=document.getElementById('alert2')
 const alert3=document.getElementById('alert3')
+const gotName=document.getElementById("gotName")
+const gotServe=document.getElementById("gotServe")
+const gotDate=document.getElementById("gotDate")
+const gotTime=document.getElementById("gotTime")
+const gotPrice=document.getElementById("gotPrice")
+
+
 const staff = [
     {
         "id": "staff1",
@@ -64,7 +71,6 @@ main.innerHTML = xStaff;
 
 let staffPrev = null;
 
-let staffName1;
 function chooseStaff(i) {
     let elem = document.getElementById('staffChoose' + i);
     if (staffPrev) {
@@ -73,7 +79,7 @@ function chooseStaff(i) {
     elem.style.border = "2px solid green";
 
     let staffName = elem.querySelector('.staffName').textContent;
-    staffName1=staffName;
+    gotName.textContent=staffName
     staffPrev = elem;
    
 }
@@ -111,12 +117,12 @@ if(servicesPrev){
 myservices.style.border = "2px solid green";
 let servicesName=myservices.querySelector('.servisXName').textContent;
 let servicesprice=myservices.querySelector('.price').textContent;
-serveName=servicesName
-servePrice=servicesprice
+
 console.log(servicesName,servicesprice)
 isServicesSelected = true;
 servicesPrev=myservices
-
+gotServe.textContent=servicesName
+gotPrice.textContent=servicesprice
 }
 
 
@@ -125,6 +131,7 @@ function getServicesUpdate(){
 		servicesPrev.style.border = "";
 	 }
 }
+
 
 
 
@@ -143,24 +150,34 @@ function plusSlides(n) {
 			  alert2.style.display = "block";
 			  return;
 		   }
-		   else if(slideIndex==3){
-
+	    } else if (slideIndex === 3) {
+		   if (!former || !previousTd) {
+			  alert3.style.display = "block";
+			  return;
 		   }
 	    }
+	    
 	    alert1.style.display = "none";
 	    alert2.style.display = "none";
-
+	    alert3.style.display = "none";
+ 
 	    if (slideIndex < 2) {
-		getServicesUpdate();
-	 	}
+		   getServicesUpdate();
+	    }
+	    if (slideIndex<3){
+			getUpdateDateTime()
+	    }
+	}
+	
+	// Prevent navigation to slide 4 if getTime and getData are not used
+	if (slideIndex === 3 && (!former || !previousTd)) {
+	    alert3.style.display = "block";
+	    return;
 	}
 	
 	showSlides(slideIndex += n);
  }
  
-
- 
-
 
 
 
@@ -277,6 +294,13 @@ function getTime(data) {
         oclockElement.style.background = "green";
         former = oclockElement;
     }
+}
+
+function getUpdateDateTime(){
+	if(previousTd || former){
+		previousTd.style.background = "";
+		former.style.background = "";
+	}
 }
 
 const tds = document.querySelectorAll(".tds");
