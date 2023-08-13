@@ -143,7 +143,6 @@ function chooseServices(servisId) {
 	let servicesId = "services" + servisId; 
 	
 	yId = servicesId.slice(-1); 
-	console.log(yId)
 	isServicesSelected = true;
 	servicesPrev = myservices;
 	gotServe.textContent = servicesName;
