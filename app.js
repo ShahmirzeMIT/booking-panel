@@ -366,10 +366,9 @@ function getTime(data) {
     if (oclockElement) {
         if (former) {
             former.style.background = "";
-		  former.style.color="black"
+		    former.style.color="black"
         }
 	   oclockElement.style.background = "#53D56C";
-        oclockElement.style.color = "white";
         former = oclockElement;
     }
    
