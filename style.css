@@ -335,8 +335,56 @@ font-weight: 500;
 .mydates {
 	display: none;
  }
- 
- 
+ .Pgreen{
+	color: green;
+ }
+ .modal{
+	display: none;
+	position: fixed; 
+  z-index: 1; 
+  padding-top: 100px; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+ }
+ .modalContent{
+	background-color: #fefefe;
+	padding: 30px;
+	border-radius: 4px;
+	border: 1px solid #888;
+	width: 27%;
+	margin: 7em auto;
+ }
+ .close{
+	position: absolute;
+    right: 38%;
+    top: 33%;
+ }
+ .textComp{
+	padding: 30px 0 30px 20px;
+ }
+ .verify{
+	font-size: 14px;
+	display: none;
+	color: green;
+	text-align: center;
+ }
+ .fail{
+	display: none;
+	font-size: 15px;
+	color: #F39C12;
+	text-align: center;
+ }
+#staffID{
+	display: none;
+}
+#servicesID{
+	display: none;
+}
  
 /* .next {
   right: 0;

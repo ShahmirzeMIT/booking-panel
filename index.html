@@ -236,7 +236,7 @@
 								<div class="second">
 									<label for="name" class="labels">Email *</label>
 									<p></p>
-									<input type="text" id="email" class="textinputs">
+									<input type="email" id="email" class="textinputs">
 								</div>
 								<div class="second">
 									<label for="name" class="labels">Phone</label>
@@ -244,20 +244,31 @@
 									<input type="text" id="phone" class="textinputs">
 								</div>	
 							</div>
+							<div id="staffID"></div>
+							<div id="servicesID"></div>
 							<div class="note">
 								<p>Note</p>
 								<div class="notes">
 									<p class="noteP"><span class="noteSpan">Staff:</span> <span id="gotName"></span></p>
 									<p class="noteP"><span class="noteSpan">Services:</span><span id="gotServe"></span></p>
-									<p class="noteP"><span class="noteSpan">Date:</span><span id="gotDate"></span> <span id="gotTime"></span></p>
-									<p class="noteP"><span class="noteSpan">Price:</span><span id="gotPrice"></span>  </p>
+									<p class="noteP"><span class="noteSpan">Date:</span><span id="gotDate"></span> / <span id="gotTime"></span></p>
+									<p class="noteP"><span class="noteSpan">Price:</span><span id="gotPrice" class="Pgreen"></span>  </p>
 								</div>
 							</div>
 							
 						</div>
+						<div class="modal">
+							<div class="modalContent">
+								<div class="close" ><img src="img/Combined Shape.png" alt=""></div>
+								<div id="textCont" class="textComp">
+									<div class="fail">Please, fill the all required fields!</div>
+									<div class="verify">Confirmation successfully completed!</div>
+								</div>
+							</div>
+						</div>
 						<div class="bottom">
 							<div class="back prev" onclick="plusSlides(-1)">Back</div>
-							<div class="next">Confirm Booking</div>
+							<div class="next" id="confirm">Confirm Booking</div>
 						</div>
 					</div>
 					</div>

@@ -1,3 +1,4 @@
+
 const main = document.querySelector(".main");
 const servis = document.querySelector(".servis");
 const all = document.getElementsByClassName("all");
@@ -12,6 +13,18 @@ const gotServe=document.getElementById("gotServe")
 const gotDate=document.getElementById("gotDate")
 const gotTime=document.getElementById("gotTime")
 const gotPrice=document.getElementById("gotPrice")
+const name=document.getElementById("name")
+const lastname=document.getElementById("lastname")
+const email=document.getElementById("email")
+const phone=document.getElementById("phone")
+const confirm=document.getElementById("confirm")
+const textCont=document.getElementById("textCont")
+const close=document.querySelector(".close")
+const modal=document.querySelector(".modal")
+const verify=document.querySelector(".verify")
+const fail=document.querySelector(".fail")
+const staffID=document.getElementById("staffID")
+const servicesID=document.getElementById("servicesID") 
 
 
 const staff = [
@@ -70,7 +83,7 @@ main.innerHTML = xStaff;
 
 
 let staffPrev = null;
-
+let xId;
 function chooseStaff(i) {
     let elem = document.getElementById('staffChoose' + i);
     if (staffPrev) {
@@ -79,12 +92,21 @@ function chooseStaff(i) {
     elem.style.border = "2px solid green";
 
     let staffName = elem.querySelector('.staffName').textContent;
-    gotName.textContent=staffName
+    let staffId=elem.querySelector(".staffName").id
+    xId = staffId.slice(-1);
+    gotName.textContent = staffName;
     staffPrev = elem;
+
+    staffID.innerText = xId;;
    
 }
 
-
+function getStaffUpdate(){
+	if (staffPrev) {
+		staffPrev.style.border = "";
+		staffPrev=null
+	 }
+}
 
 
 let xServices = "";
@@ -108,27 +130,33 @@ servis.innerHTML = xServices;
 let servicesPrev=null
 let serveName=""
 let servePrice=""
-function chooseServices(servisId){
-const myservices=document.getElementById("services"+servisId)
-if(servicesPrev){
-	servicesPrev.style.border="";
-}
+let yId;
 
-myservices.style.border = "2px solid green";
-let servicesName=myservices.querySelector('.servisXName').textContent;
-let servicesprice=myservices.querySelector('.price').textContent;
+function chooseServices(servisId) {
+    const myservices = document.getElementById("services" + servisId);
+    if (servicesPrev) {
+        servicesPrev.style.border = "";
+    }
 
-console.log(servicesName,servicesprice)
-isServicesSelected = true;
-servicesPrev=myservices
-gotServe.textContent=servicesName
-gotPrice.textContent=servicesprice
+    myservices.style.border = "2px solid green";
+    let servicesName = myservices.querySelector('.servisXName').textContent;
+    let servicesprice = myservices.querySelector('.price').textContent;
+    let servicesId = myservices.querySelector('.servisXName').id;
+    yId = servicesId.slice(-1);
+
+    isServicesSelected = true;
+    servicesPrev = myservices;
+    gotServe.textContent = servicesName;
+    gotPrice.textContent = servicesprice;
+
+    servicesID.innerText = yId;
 }
 
 
 function getServicesUpdate(){
 	if (servicesPrev) {
 		servicesPrev.style.border = "";
+		servicesPrev=null
 	 }
 }
 
@@ -167,12 +195,6 @@ function plusSlides(n) {
 	    if (slideIndex<3){
 			getUpdateDateTime()
 	    }
-	}
-	
-	
-	if (slideIndex === 3 && (!former || !previousTd)) {
-	    alert3.style.display = "block";
-	    return;
 	}
 	
 	showSlides(slideIndex += n);
@@ -257,14 +279,13 @@ function getData(n) {
 		
 	   }
 	   let currentIndex = 1;
-	   
 	   h5.children[currentIndex].style.display = "block";
-	   
+	   gotDate.textContent=h5.children[currentIndex].textContent
 	   h5.addEventListener('click', () => {
 		  h5.children[currentIndex].style.display = "none"; 
 	   
 		  currentIndex = (currentIndex + 1) % h5.children.length;
-	   
+		  gotDate.textContent=h5.children[currentIndex].textContent
 		  h5.children[currentIndex].style.display = "block"; 
 	   });
 	   
@@ -303,7 +324,6 @@ function getData(n) {
 let former = null;
 
 function getTime(data) {
-    console.log(data);
 
     let oclockElement = document.getElementById(data);
     
@@ -315,12 +335,15 @@ function getTime(data) {
         oclockElement.style.background = "green";
         former = oclockElement;
     }
+    gotTime.textContent=former.textContent
 }
 
 function getUpdateDateTime(){
 	if(previousTd || former){
 		previousTd.style.background = "";
 		former.style.background = "";
+		previousTd=null
+		former=null
 	}
 }
 
@@ -330,4 +353,52 @@ tds.forEach((td, index) => {
         getData(index + 1);
     });
 });
+
+
+
+confirm.addEventListener('click',()=>{
+	
+	let Name=name.value
+	let LastName=lastname.value
+	let Email=email.value
+	let Phone=phone.value
+	modal.style.display="block"
+	if(Name!="" && LastName!="" && Email!="" && Phone!=""){
+		verify.style.display="block"
+		
+		if(fail.style.display="block"){
+			fail.style.display="none"
+		}
+		const datasendJSon={
+			costume:{
+				name:name.value,
+				lastName:lastname.value,
+				email:email.value,
+				phone:phone.value
+			},
+			date:gotDate.textContent,
+			services_id:servicesID.innerText,
+			staff_id:staffID.innerText,
+			time:gotTime.textContent
+		}
+		console.log(datasendJSon)
+		setTimeout(() => {
+			plusSlides(-3);
+			getStaffUpdate();
+		},1000);
+		
+		
+	}
+	else{
+		if(verify.style.display="block"){
+			verify.style.display="none"
+		}
+		fail.style.display="block"
+	}
+})
+
+close.addEventListener('click',()=>{
+	modal.style.display="none";
+})
+
 
