@@ -175,7 +175,6 @@ function plusSlides(n) {
 	    if (slideIndex === 1) {
 		   if (!staffPrev) {
 			  alert1.style.display = "block";
-			//   myStaff.style.color="#53D56C"
 			  return;
 		   }
 	    } else if (slideIndex === 2) {
@@ -453,7 +452,6 @@ confirm.addEventListener('click',()=>{
 			lastname.value=null
 			email.value=null
 			phone.value=null
-			modal.style.display="none"
 		},1000);
 		
 		
