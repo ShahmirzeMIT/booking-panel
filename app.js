@@ -25,6 +25,10 @@ const verify=document.querySelector(".verify")
 const fail=document.querySelector(".fail")
 const staffID=document.getElementById("staffID")
 const servicesID=document.getElementById("servicesID") 
+const myStaff=document.getElementById("myStaff")
+const myServices=document.getElementById("myServices") 
+const myDateTime=document.getElementById("myDateTime")
+const myConfirm=document.getElementById("myConfirm")
 
 
 const staff = [
@@ -171,6 +175,7 @@ function plusSlides(n) {
 	    if (slideIndex === 1) {
 		   if (!staffPrev) {
 			  alert1.style.display = "block";
+			//   myStaff.style.color="#53D56C"
 			  return;
 		   }
 	    } else if (slideIndex === 2) {
@@ -218,6 +223,67 @@ function showSlides(n) {
     }
 
     slides[slideIndex - 1].style.display = "block";
+    
+    if (slideIndex === 1) {
+	myStaff.style.color = "#53D56C";
+	let elem = myStaff.querySelector('.numbers');
+	elem.textContent="1"
+	elem.style.backgroundColor = "#53D56C";
+ }
+ if(slideIndex>1){
+	myStaff.style.color = "white"
+	let prevelem=myStaff.querySelector('.numbers');
+	prevelem.innerHTML='<img src="img/Path.png"/>'
+	prevelem.style.backgroundColor="#6C70DC"
+ }
+ if(slideIndex<2){
+	myServices.style.color = "inherit";
+	let elem = myServices.querySelector('.numbers');
+	elem.textContent='2'
+	elem.style.backgroundColor = "#4D545A";
+ }
+
+ if (slideIndex === 2) {
+	myServices.style.color = "#53D56C";
+	let elem = myServices.querySelector('.numbers');
+	elem.style.backgroundColor = "#53D56C";
+ }
+ if (slideIndex > 2) {
+	myServices.style.color = "white";
+	let elem = myServices.querySelector('.numbers');
+	elem.innerHTML='<img src="img/Path.png"/>'
+	elem.style.backgroundColor = "#6C70DC";
+ }
+ if(slideIndex<3){
+	myDateTime.style.color = "inherit";
+	let elem = myDateTime.querySelector('.numbers');
+	elem.textContent='3'
+	elem.style.backgroundColor = "#4D545A";
+ }
+
+ if (slideIndex === 3) {
+	myDateTime.style.color = "#53D56C";
+	let elem = myDateTime.querySelector('.numbers');
+	elem.style.backgroundColor = "#53D56C";
+ }
+ if (slideIndex > 3) {
+	myDateTime.style.color = "white";
+	let elem = myDateTime.querySelector('.numbers');
+	elem.innerHTML='<img src="img/Path.png"/>'
+	elem.style.backgroundColor = "#6C70DC";
+ }
+ if(slideIndex<4){
+	myConfirm.style.color = "inherit";
+	let elem = myConfirm.querySelector('.numbers');
+	elem.textContent='4'
+	elem.style.backgroundColor = "#4D545A";
+ }
+ if (slideIndex === 4) {
+	myConfirm.style.color = "#53D56C";
+	let elem = myConfirm.querySelector('.numbers');
+	elem.style.backgroundColor = "#53D56C";
+ }
+ 
 }
 
 
@@ -264,7 +330,6 @@ function getData(n) {
     previousTd = currentTd;
     const select = document.querySelector('.takeTime > h5');
     select.style.display = "none";
-    console.log(currentTd.textContent)
     if (!isTimeAppended) {
 	
         const h5 = document.createElement('h5');
@@ -328,7 +393,6 @@ function getTime(data) {
     let oclockElement = document.getElementById(data);
     
     if (oclockElement) {
-        console.log(oclockElement.textContent);
         if (former) {
             former.style.background = "";
         }
@@ -385,6 +449,11 @@ confirm.addEventListener('click',()=>{
 		setTimeout(() => {
 			plusSlides(-3);
 			getStaffUpdate();
+			name.value=null
+			lastname.value=null
+			email.value=null
+			phone.value=null
+			modal.style.display="none"
 		},1000);
 		
 		
