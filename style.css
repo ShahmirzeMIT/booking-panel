@@ -5,6 +5,7 @@ margin: 0 ;
 padding: 0;
 font-family: 'Poppins', sans-serif;
 list-style-type: none;
+outline: none;
 }
 
 body{background: url('img/Rectangle.png');}
@@ -268,6 +269,66 @@ color: #AAACAF;
 	padding: 3px 18px;
 	background: #ECEFF2;
 	margin: 0 5px;
+}
+.inputs{
+	background: #E3EAF3;
+    height: 50vh;
+    padding: 0.5em 1.5em;
+   
+}
+.together{
+	display: flex;
+	flex-wrap: wrap;
+}
+.first{
+	width: 50%;
+	height: 10vh;
+}
+.second{
+	width: 50%;
+}
+
+.labels{
+color: #292D32;
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.textinputs{
+	width: 90%;
+    padding: 7px;
+}
+.note{
+	margin-top: 2em;
+}
+.notes{
+	padding: 16px 19px;
+	background: white;
+}
+.noteSpan{
+color: #6C70DC;
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+padding-right: 10px;
+}
+.noteP{
+	color: black;
+	font-family: Poppins;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+}
+
+.cGreen{
+	color: #4FBF65;
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
 }
 /* .next {
   right: 0;

@@ -5,13 +5,13 @@ let takeTime=document.querySelector('.takeTime')
 
 const staff = [
 	{
-	    "id": 1,
+	    "id":"staff1" ,
 	    "name": "Alex Rosetta",
 	    "email": "alexyrosetta@egmail.com",
 	    "image": "staff-1.png",
 	},
 	{
-	    "id": 2,
+	    "id": "staff2",
 	    "name": "Maria July",
 	    "email": "mariajuly@egmail.com",
 	    "image": "staff-2.png",
@@ -56,7 +56,7 @@ const staff = [
 			<div class="staff">
 				<div class="stafImg"><img src="img/${staff[i].image}" alt=""></div>
 				<div>
-				<h4 class="staffName">${staff[i].name}</h4>
+				<h4 class="staffName" id="${staff[i].id}">${staff[i].name}</h4>
 				<p>${staff[i].email}</p>	
 				</div>
 							
